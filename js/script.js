@@ -19,13 +19,14 @@ function titleClickHandler(event) {
   for (let activeArticle of activeArticles) {
     activeArticle.classList.remove("active");
   }
-  /* get 'href' attribute from the clicked link */
+  /* [DONE] get 'href' attribute from the clicked link */
   const articleSelector = clickedElement.getAttribute("href");
   console.log("was clicked:", articleSelector);
-
-  /* find the correct article using the selector (value of 'href' attribute) */
-
+  /* [FIX THIS?!] find the correct article using the selector (value of 'href' attribute) */
+  const targetArticle = document.querySelector("href");
+  console.log("kliknieto: ", targetArticle);
   /* add class 'active' to the correct article */
+  targetArticle.classList.add("active");
 }
 
 const links = document.querySelectorAll(".titles a");
