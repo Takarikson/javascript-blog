@@ -37,15 +37,20 @@ const optArticleSelector = ".post",
   optTitleListSelector = ".titles";
 
 function generateTitleLinks() {
-  /* remove contents of titleList */
+  /* [DONE] remove contents of titleList */
   const titleList = document.querySelector(optTitleListSelector);
   function clearMessages() {
     titleList.innerHTML = "";
-    console.log("wywołana funkcja", clearMessages);
+    //console.log("wywołana funkcja", clearMessages);
   }
   clearMessages();
-  /* for each article */
+  /* [DONE] for each article */
+  const articles = document.querySelectorAll(optArticleSelector);
+  for (let article of articles) {
+  }
+  console.log("wywołanie funkcji ", articles);
   /* get the article id */
+  const articleId = clickedElement.getAttribute("id");
   /* find the title element */
   /* get the title from the title element */
   /* create HTML of the link */
