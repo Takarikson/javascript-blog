@@ -63,29 +63,28 @@ generateTitleLinks();
 
 function generateTags() {
   /* find all articles */
-  const articlesTags = document.querySelectorAll(optArticleTagsSelector);
-  //console.log('wywolanie: ' articlesTags);
+  const articleTags = document.querySelectorAll(optArticleTagsSelector);
   /* START LOOP: for every article: */
+  for (let article of articles) {
+    /* [DONE] find tags wrapper */
+    const titleList = article.querySelectorAll(optArticleTagsSelector);
+    /* [DONE] make html variable with empty string */
+    let html = '';
+    /* get tags from data-tags attribute */
+    const articleTags = article.getAttribute('data-tags');
+    /* split tags into array */
+    const articleTagsArray = articleTags.split(' ');
+    /* START LOOP: for each tag */
 
-  /* find tags wrapper */
+    /* generate HTML of the link */
 
-  /* make html variable with empty string */
+    /* add generated code to html variable */
 
-  /* get tags from data-tags attribute */
+    /* END LOOP: for each tag */
 
-  /* split tags into array */
+    /* insert HTML of all the links into the tags wrapper */
 
-  /* START LOOP: for each tag */
-
-  /* generate HTML of the link */
-
-  /* add generated code to html variable */
-
-  /* END LOOP: for each tag */
-
-  /* insert HTML of all the links into the tags wrapper */
-
-  /* END LOOP: for every article: */
+    /* END LOOP: for every article: */
+  }
 }
-
 generateTags();
