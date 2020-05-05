@@ -37,7 +37,7 @@ function generateTitleLinks() {
   /* [DONE] for each article */
   const articles = document.querySelectorAll(optArticleSelector);
   /*[DONE Loop]*/
-  let html = "";
+  let html = '';
   for (let article of articles) {
     /*[DONE] get the article id */
     const articleId = article.getAttribute('id');
@@ -46,12 +46,8 @@ function generateTitleLinks() {
     /* [TO DO!]get the title from the title element */
 
     /* create HTML of the link */
-    const linkHTML =
-      '<li><a href="#' +
-      articleId +
-      '"><span>' +
-      articleTitle +
-      "</span></a></li>";
+    //const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + "</span></a></li>";
+    const linkHTML = `<li><a href="#${articleId}"><span>${articleTitle}</span></a></li>`;
     /* insert link into titleList */
     html = html + linkHTML;
   }
@@ -60,14 +56,15 @@ function generateTitleLinks() {
   console.log(links);
 
   for (let link of links) {
-    link.addEventListener("click", titleClickHandler);
+    link.addEventListener('click', titleClickHandler);
   }
 }
 generateTitleLinks();
 
 function generateTags() {
   /* find all articles */
-  const articles = document.querySelectorAll(optArticleTagsSelector);
+  const articlesTags = document.querySelectorAll(optArticleTagsSelector);
+  //console.log('wywolanie: ' articlesTags);
   /* START LOOP: for every article: */
 
   /* find tags wrapper */
