@@ -59,32 +59,37 @@ function generateTitleLinks() {
   }
 }
 generateTitleLinks();
-
 function generateTags() {
-  /* find all articles */
-  const articlesTags = document.querySelectorAll(optArticleTagsSelector);
+  /* [DONE] find all articles */
+  const articles = document.querySelectorAll(optArticleTagsSelector);
+  console.log(articles);
   /* START LOOP: for every article: */
   for (let article of articles) {
     /* [DONE] find tags wrapper */
     const titleList = article.querySelectorAll(optArticleTagsSelector);
+    console.log(titleList);
     /* [DONE] make html variable with empty string */
     let html = '';
-    /* get tags from data-tags attribute */
+    console.log(html);
+    /* [DONE] get tags from data-tags attribute */
     const articleTags = article.getAttribute('data-tags');
+    console.log(articleTags);
     /* split tags into array */
     const articleTagsArray = articleTags.split(' ');
-    console.log(articleTags);
+    console.log(articleTagsArray);
     /* START LOOP: for each tag */
+    for (let tag of articleTagsArray) {
+      /* generate HTML of the link */
 
-    /* generate HTML of the link */
+      /* add generated code to html variable */
 
-    /* add generated code to html variable */
-
-    /* END LOOP: for each tag */
-
+      /* END LOOP: for each tag */
+    }
     /* insert HTML of all the links into the tags wrapper */
 
     /* END LOOP: for every article: */
   }
 }
+
 generateTags();
+
