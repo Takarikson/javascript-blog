@@ -68,7 +68,7 @@ function generateTags() {
     /* [DONE] find tags wrapper */
     const titleList = article.querySelectorAll(optArticleTagsSelector);
     console.log(titleList);
-    /* [DONE] make html variable with empty string */
+    /*git  [DONE] make html variable with empty string */
     let html = '';
     console.log(html);
     /* [DONE] get tags from data-tags attribute */
@@ -80,9 +80,12 @@ function generateTags() {
     /* START LOOP: for each tag */
     for (let tag of articleTagsArray) {
       /* generate HTML of the link */
-
+      console.log(tag);
       /* add generated code to html variable */
+      const linkHTML = `<li><a href="#${articleTagsArray}">${tag}</a></li>`;
 
+      /* insert link into titleList */
+      html = html + linkHTML;
       /* END LOOP: for each tag */
     }
     /* insert HTML of all the links into the tags wrapper */
