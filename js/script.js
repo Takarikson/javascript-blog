@@ -53,7 +53,6 @@ function generateTitleLinks() {
   }
   titleList.innerHTML = html;
   const links = document.querySelectorAll('.titles a');
-  console.log(links);
 
   for (let link of links) {
     link.addEventListener('click', titleClickHandler);
@@ -63,7 +62,7 @@ generateTitleLinks();
 
 function generateTags() {
   /* find all articles */
-  const articleTags = document.querySelectorAll(optArticleTagsSelector);
+  const articlesTags = document.querySelectorAll(optArticleTagsSelector);
   /* START LOOP: for every article: */
   for (let article of articles) {
     /* [DONE] find tags wrapper */
@@ -74,6 +73,7 @@ function generateTags() {
     const articleTags = article.getAttribute('data-tags');
     /* split tags into array */
     const articleTagsArray = articleTags.split(' ');
+    console.log(articleTags);
     /* START LOOP: for each tag */
 
     /* generate HTML of the link */
