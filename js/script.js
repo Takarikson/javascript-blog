@@ -59,14 +59,14 @@ function generateTitleLinks() {
   }
 }
 generateTitleLinks();
-
+//GENERATE TAGS
 function generateTags() {
   /* [DONE] find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
   /* START LOOP: for every article: */
   for (let article of articles) {
     /* [DONE] find tags wrapper */
-    article.querySelector(optArticleTagsSelector);
+    const tagsWrapper = article.querySelector(optArticleTagsSelector);
     /* [DONE] make html variable with empty string */
     let html = '';
     /* [DONE] get tags from data-tags attribute */
@@ -79,17 +79,54 @@ function generateTags() {
       const linkHTML = `<li><a href="#tag-${tag}">${tag}</a></li>`;
       /* add generated code to html variable */
       html = html + linkHTML;
-      console.log(linkHTML);
       /* insert link into titleList */
-      linkHTML = titleList.innerHTML;
+      //console.log(tagsWrapper);
       /* END LOOP: for each tag */
     }
+    tagsWrapper.innerHTML = html;
     /* insert HTML of all the links into the tags wrapper */
     const links = article.querySelectorAll('.post-tags');
-    console.log(links);
     /* END LOOP: for every article: */
   }
 }
-
 generateTags();
+//AFTER CLICK
+function tagClickHandler(event) {
+  /* prevent default action for this event */
 
+  /* make new constant named "clickedElement" and give it the value of "this" */
+
+  /* make a new constant "href" and read the attribute "href" of the clicked element */
+
+  /* make a new constant "tag" and extract tag from the "href" constant */
+
+  /* find all tag links with class active */
+
+  /* START LOOP: for each active tag link */
+
+  /* remove class active */
+
+  /* END LOOP: for each active tag link */
+
+  /* find all tag links with "href" attribute equal to the "href" constant */
+
+  /* START LOOP: for each found tag link */
+
+  /* add class active */
+
+  /* END LOOP: for each found tag link */
+
+  /* execute function "generateTitleLinks" with article selector as argument */
+}
+
+function addClickListenersToTags() {
+  /* find all links to tags */
+
+  /* START LOOP: for each link */
+
+  /* add tagClickHandler as event listener for that link */
+
+  /* END LOOP: for each link */
+}
+
+addClickListenersToTags();
