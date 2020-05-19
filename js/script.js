@@ -1,6 +1,12 @@
 'use strict';
 /*eslint-disable no-empty*/
 
+const optArticleSelector = '.post',
+  optTitleSelector = '.post-title',
+  optTitleListSelector = '.titles',
+  optArticleTagsSelector = '.post-tags .list',
+  optAuthorSelector = '.post-author';
+
 
 function titleClickHandler(event) {
   event.preventDefault();
@@ -24,12 +30,6 @@ function titleClickHandler(event) {
   /* add class 'active' to the correct article */
   targetArticle.classList.add('active');
 }
-
-const optArticleSelector = '.post',
-  optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list',
-  optAuthorSelector = '.post-author';
 
 function generateTitleLinks(customSelector = '') {
   /* [DONE] remove contents of titleList */
@@ -150,21 +150,6 @@ function generateAuthors() {
 }
 generateAuthors();
 
-function generateAuthorsInSidebar() {
-  const articles = document.querySelectorAll(optArticleSelector);
-  //debugger; /*'article' is not defined.*/
-  const authorWrapper = article.querySelector('.list .authors');
-
-  let html = '';
-
-  for (let article of articles) {
-    const articleAuthor = article.getAttribute('data-author');
-    const linkHTML = `by <a href="author-${articleAuthor.toLowerCase()}">${articleAuthor}</a>`;
-  }
-  authorWrapper.innerHTML = linkHTML;
-}
-generateAuthorsInSidebar();
-
 function addClickListenersToAuthors() {
   /* find all links to tags */
   const links = document.querySelectorAll('a[href^="#author-"]');
@@ -195,8 +180,8 @@ function authorClickHandler(event) {
     activeLink.classList.remove('active');
     /* END LOOP: for each active tag link */
   }
-  /* find all tag links with "href" attribute equal to the "href" constant (z (querySelectorAll('href') na getAttribute)*/
-  const hrefLink = article.getAttribute('href');
+  /* find all tag links with "href" attribute equal to the "href" constant (z (querySelectorAll('href') na getAttribute?)*/
+  const hrefLink = document.getAttribute('href');
   /* START LOOP: for each found tag link */
   for (let link of hrefLink) {
     /* add class active */

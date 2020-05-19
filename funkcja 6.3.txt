@@ -1,0 +1,16 @@
+// FUNKCJA DO 6.3
+// function generateAuthorsInSidebar() {
+//   const articles = document.querySelectorAll(optArticleSelector);
+
+//   //debugger; /*'article' is not defined.*/
+//   const sidebarWrapper = document.querySelector('.list .authors');
+
+//   let html = '';
+//   let linkHTML = '';
+//   for (let article of articles) {
+//     const articleAuthor = article.getAttribute('data-author');
+//     const linkHTML = `by <a href="author-${articleAuthor.toLowerCase()}">${articleAuthor}</a>`;
+//   }
+//   sidebarWrapper.innerHTML = linkHTML;
+// }
+// generateAuthorsInSidebar();
