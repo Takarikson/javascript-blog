@@ -30,7 +30,7 @@ function titleClickHandler(event) {
   /* add class 'active' to the correct article */
   targetArticle.classList.add('active');
 }
-
+//doczytac
 function generateTitleLinks(customSelector = '') {
   /* [DONE] remove contents of titleList */
   const titleList = document.querySelector(optTitleListSelector);
@@ -152,7 +152,8 @@ generateAuthors();
 
 function addClickListenersToAuthors() {
   /* find all links to tags */
-  const links = document.querySelectorAll('a[href^="#author-"]');
+  //const links = document.querySelectorAll('a[href^="#author-"]');
+  const links = document.querySelectorAll('a[href^="author-"]');
   /* START LOOP: for each link */
   for (let link of links) {
     /* add tagClickHandler as event listener for that link */
@@ -160,7 +161,7 @@ function addClickListenersToAuthors() {
     /* END LOOP: for each link */
   }
 }
-//nie aktywować - addClickListenersToAuthors();
+addClickListenersToAuthors();
 
 
 function authorClickHandler(event) {
@@ -173,22 +174,7 @@ function authorClickHandler(event) {
   /* [DONE] make a new constant "tag" and extract tag from the "href" constant */
   const tagAuthor = href.replace('author-', '');
   /* [DONE] find all tag links with class actve */
-  const activeLinks = document.querySelectorAll('a.active[href^="author-"]');
-  /* START LOOP: [DONE] for each active tag lnk */
-  for (let activeLink of activeLinks) {
-    /*[DONE] remove class active */
-    activeLink.classList.remove('active');
-    /* END LOOP: for each active tag link */
-  }
-  /* find all tag links with "href" attribute equal to the "href" constant (z (querySelectorAll('href') na getAttribute?)*/
-  const hrefLink = document.getAttribute('href');
-  /* START LOOP: for each found tag link */
-  for (let link of hrefLink) {
-    /* add class active */
-    link.classList.add('active');
-    /* END LOOP: for each found tag link */
-  }
+
   /* execute function "generateTitleLinks" with article selector as argument */
   generateTitleLinks('[data-author="' + tagAuthor + '"]');
 }
-authorClickHandler();
