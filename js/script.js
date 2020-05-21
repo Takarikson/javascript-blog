@@ -43,7 +43,6 @@ function generateTitleLinks(customSelector = '') {
     const articleId = article.getAttribute('id');
     /*[DONE] find the title element - .innerHTML wytwarza błąd. poprawny .textContent*/
     const articleTitle = article.querySelector(optTitleSelector).textContent;
-    /* [TO DO!]get the title from the title element */
     /* create HTML of the link */
     const linkHTML = `<li><a href="#${articleId}"><span>${articleTitle}</span></a></li>`;
     /* insert link into titleList */
@@ -58,8 +57,10 @@ function generateTitleLinks(customSelector = '') {
 }
 generateTitleLinks();
 
-//GENERATE TAGS [DONE!]
+//GENERATE TAGS [DONE]
 function generateTags() {
+  /* [NEW] create a new variable allTags with an empty array */
+  let allTags = [];
   /* [DONE] find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
   /* START LOOP: for every article: */
@@ -68,18 +69,24 @@ function generateTags() {
     const tagsWrapper = article.querySelector(optArticleTagsSelector);
     /* [DONE] make html variable with empty string */
     let html = '';
-    /* [DONE] get tags from data-tags attribute */
+    /* 1. Dla każdego artykułu znajdujemy jego tagi - [DONE] get tags from data-tags attribute */
     const articleTags = article.getAttribute('data-tags');
     /* [DONE] split tags into array */
     const articleTagsArray = articleTags.split(' ');
     /* START LOOP: for each tag */
     for (let tag of articleTagsArray) {
-      /* generate HTML of the link */
+      /* 2. Dla każdego z tych tagów jest generowany kod HTML linka -
+      [DONE] generate HTML of the link */
       const linkHTML = `<li><a href="#tag-${tag}">${tag}</a>, </li>`;
       /* add generated code to html variable */
       html = html + linkHTML;
-      /* insert link into titleList */
-      //console.log(tagsWrapper);
+      /* 3. Sprawdzamy, czy dokładnie taki link mamy już w tablicy allTags -
+      [NEW] check if this link is NOT already in allTags */
+      if (allTags.indexOf(linkHTML) == -1) {
+        /* 4. Jeśli go nie mamy, dodajemy go do tej tablicy -
+        [NEW] add generated code to allTags array */
+        allTags.push(linkHTML);
+      }
       /* END LOOP: for each tag */
     }
     tagsWrapper.innerHTML = html;
@@ -87,6 +94,13 @@ function generateTags() {
     article.querySelectorAll('.post-tags');
     /* END LOOP: for every article: */
   }
+  /*5. Na końcu funkcji znajdujemy listę tagów -
+  [NEW] find list of tags in right column */
+  const tagList = document.querySelector('.tags');
+  /*6. dodajemy do niej wszystkie linki znajdujące się w tablicy allTagsLinks,
+  łącząc je ze sobą za pomocą spacji MUSI TO ZNAJDOWAĆ SIĘ POZA PĘTLĄ
+  [NEW] add html from allTags to tagList */
+  tagList.innerHTML = allTags.join(' ');
 }
 generateTags();
 //AFTER CLICK
@@ -99,7 +113,6 @@ function tagClickHandler(event) {
   const href = clickedElement.getAttribute('href');
   /* [DONE] make a new constant "tag" and extract tag from the "href" constant */
   const tag = href.replace('#tag-', '');
-  //console.log(tag);
   /* [DONE] find all tag links with class actve */
   const activeLinks = document.querySelectorAll('a.active[href^="#tag-"]');
   /* START LOOP: [DONE] for each active tag lnk */
@@ -118,7 +131,7 @@ function tagClickHandler(event) {
   /* execute function "generateTitleLinks" with article selector as argument */
   generateTitleLinks('[data-tags~="' + tag + '"]');
 }
-//43, 78 funkcja ponoc skonczona, lecimy dalej z autorami
+
 function addClickListenersToTags() {
   /* find all links to tags */
   const links = document.querySelectorAll('a[href^="#tag-"]');
@@ -131,7 +144,7 @@ function addClickListenersToTags() {
 }
 addClickListenersToTags();
 
-//GENERATE AUTHORS napisac funkcje na wzór generateTags
+/*[DONE]*/
 function generateAuthors() {
   /* [DONE] find all authors */
   const articles = document.querySelectorAll(optArticleSelector);
@@ -142,7 +155,6 @@ function generateAuthors() {
     /* get tags from data-author attribute*/
     const articleAuthor = article.getAttribute('data-author');
     /* insert HTML of all the links into the tags wrapper */
-    //zle - const linkHTML = `by <a href="author-${articleAuthor.toLowerCase()}">${articleAuthor}</a>`;
     const linkHTML = `by <a href="author-${articleAuthor}">${articleAuthor}</a>`;
     /* END LOOP: for every authors: */
     authorsWrapper.innerHTML = linkHTML;
@@ -152,7 +164,6 @@ generateAuthors();
 
 function addClickListenersToAuthors() {
   /* find all links to tags */
-  //const links = document.querySelectorAll('a[href^="#author-"]');
   const links = document.querySelectorAll('a[href^="author-"]');
   /* START LOOP: for each link */
   for (let link of links) {
@@ -163,7 +174,6 @@ function addClickListenersToAuthors() {
 }
 addClickListenersToAuthors();
 
-
 function authorClickHandler(event) {
   /* [DONE] prevent default action for this event */
   event.preventDefault();
@@ -173,8 +183,6 @@ function authorClickHandler(event) {
   const href = clickedElement.getAttribute('href');
   /* [DONE] make a new constant "tag" and extract tag from the "href" constant */
   const tagAuthor = href.replace('author-', '');
-  /* [DONE] find all tag links with class actve */
-
   /* execute function "generateTitleLinks" with article selector as argument */
   generateTitleLinks('[data-author="' + tagAuthor + '"]');
 }
