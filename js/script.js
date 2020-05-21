@@ -8,6 +8,9 @@ Jeśli przed pętlą nie można dobrać się do zmiennej to prawdopodobnie trzeb
 *. .push()	dodaje element na końcu tablicy
 *. .length	podaje liczbę elementów w tablicy
 *. .slice()	tworzy nową tablicę z części elementów
+*. params - parametry
+*. opts - optiions
+*. elem - elements
 */
 
 const optArticleSelector = '.post',
@@ -65,6 +68,23 @@ function generateTitleLinks(customSelector = '') {
   }
 }
 generateTitleLinks();
+/*Znalezienie skrajnych liczb wystąpień 2 klucze min,max*/
+function calculateTagsParams(tags) {
+  const params = { max: 0, min: 999999 };
+  /*Iteracja przez cały obiekt*/
+  for (let tag in tags) {
+    console.log(tag + ' is used ' + tags[tag] + ' times');
+    /* z ifem: if(tags[tag] > params.max){params.max = tags[tag];}
+               if(tags[tag] < params.min){params.min = tags[tag];} */
+    params.max = tags[tag] > params.max ? tags[tag] : params.max;
+    params.min = tags[tag] < params.min ? tags[tag] : params.min;
+  }
+
+
+  return params;
+}
+
+
 
 //GENERATE TAGS [DONE]
 function generateTags() {
@@ -110,10 +130,12 @@ function generateTags() {
   [NEW] find list of tags in right column */
   const tagList = document.querySelector('.tags');
   /*6. dodajemy do niej wszystkie linki znajdujące się w tablicy allTagsLinks,łącząc je ze sobą za pomocą spacji join()	łączy elementy tablicy w tekst MUSI TO ZNAJDOWAĆ SIE POZA PĘTLĄ
-  ---------------------------------
+  ---------------------------------*/
+  /*znalezienie skrajnych liczb wystąpień*/
+  const tagsParams = calculateTagsParams(allTags);
+  console.log('tagsParams:', tagsParams);
   /* [NEW] create variable for all links HTML code*/
   let allTagsHTML = '';
-
   /* [NEW] START LOOP: for each tag in allTags: */
   for (let tag in allTags) {
     /* [NEW] genereate code of a link and add it to allTagsHTML */
