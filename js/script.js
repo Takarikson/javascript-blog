@@ -1,6 +1,15 @@
 'use strict';
 /*eslint-disable no-empty*/
 
+/* ProTipy:
+Jeśli przed pętlą nie można dobrać się do zmiennej to prawdopodobnie trzeba będzie się odwołać na końcu poza pętlą
+*. +=	| a += b	| a = a + b
+*. .split(' ') rozdziela stringa na elementy oddzielone spacją(nawias)
+*. .push()	dodaje element na końcu tablicy
+*. .length	podaje liczbę elementów w tablicy
+*. .slice()	tworzy nową tablicę z części elementów
+*/
+
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
@@ -59,8 +68,8 @@ generateTitleLinks();
 
 //GENERATE TAGS [DONE]
 function generateTags() {
-  /* [NEW] create a new variable allTags with an empty array */
-  let allTags = [];
+  /* [NEW] create a new variable allTags with an empty OBJECT */
+  let allTags = {};
   /* [DONE] find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
   /* START LOOP: for every article: */
@@ -80,12 +89,15 @@ function generateTags() {
       const linkHTML = `<li><a href="#tag-${tag}">${tag}</a>, </li>`;
       /* add generated code to html variable */
       html = html + linkHTML;
-      /* 3. Sprawdzamy, czy dokładnie taki link mamy już w tablicy allTags -
+      /* 3. Sprawdzamy, czy dokładnie taki link mamy już w tablicy allTags"jeśli allTags NIE MA klucza tag" -
       [NEW] check if this link is NOT already in allTags */
-      if (allTags.indexOf(linkHTML) == -1) {
+      if (!allTags.hasOwnProperty(tag)) {
         /* 4. Jeśli go nie mamy, dodajemy go do tej tablicy -
         [NEW] add generated code to allTags array */
-        allTags.push(linkHTML);
+        //allTags.push(linkHTML);
+        allTags[tag] = 1;
+      } else {
+        allTags[tag]++;
       }
       /* END LOOP: for each tag */
     }
@@ -97,10 +109,21 @@ function generateTags() {
   /*5. Na końcu funkcji znajdujemy listę tagów -
   [NEW] find list of tags in right column */
   const tagList = document.querySelector('.tags');
-  /*6. dodajemy do niej wszystkie linki znajdujące się w tablicy allTagsLinks,
-  łącząc je ze sobą za pomocą spacji MUSI TO ZNAJDOWAĆ SIĘ POZA PĘTLĄ
-  [NEW] add html from allTags to tagList */
-  tagList.innerHTML = allTags.join(' ');
+  /*6. dodajemy do niej wszystkie linki znajdujące się w tablicy allTagsLinks,łącząc je ze sobą za pomocą spacji join()	łączy elementy tablicy w tekst MUSI TO ZNAJDOWAĆ SIE POZA PĘTLĄ
+  ---------------------------------
+  /* [NEW] create variable for all links HTML code*/
+  let allTagsHTML = '';
+
+  /* [NEW] START LOOP: for each tag in allTags: */
+  for (let tag in allTags) {
+    /* [NEW] genereate code of a link and add it to allTagsHTML */
+    //allTagsHTML += tag + ' (' + allTags[tag] + ')';
+    allTagsHTML += `<li><a href="#tag-${tag}">${tag} (${allTags[tag]})</a>, </li>`;
+    /* [NEW] END LOOP: for each tag in allTags */
+  }
+  /* [NEW] add html from allTagsHTML to tagList */
+  tagList.innerHTML = allTagsHTML;
+
 }
 generateTags();
 //AFTER CLICK
