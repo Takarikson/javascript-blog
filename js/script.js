@@ -79,8 +79,6 @@ function calculateTagsParams(tags) {
     params.max = tags[tag] > params.max ? tags[tag] : params.max;
     params.min = tags[tag] < params.min ? tags[tag] : params.min;
   }
-
-
   return params;
 }
 
@@ -123,7 +121,8 @@ function generateTags() {
     }
     tagsWrapper.innerHTML = html;
     /* insert HTML of all the links into the tags wrapper */
-    article.querySelectorAll('.post-tags');
+    const tagsHTML = article.querySelectorAll('.post-tags');
+    console.log(tagsHTML);
     /* END LOOP: for every article: */
   }
   /*5. Na końcu funkcji znajdujemy listę tagów -
