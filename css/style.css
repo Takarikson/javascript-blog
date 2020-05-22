@@ -24,9 +24,9 @@ body {
   text-transform: uppercase;
   font-family: "Oswald", sans-serif;
   font-weight: 600;
-  background-color: #f5f5f5;
+  background-color: #dad6d6;
   border-radius: 10px;
-  text-align: center;
+  padding-left: 45px;
 }
 
 .section-title span {
@@ -40,7 +40,6 @@ body {
   display: -ms-flexbox;
   display: flex;
   margin-left: 10px;
-
 }
 
 .sidebar {
@@ -111,6 +110,7 @@ body {
 .post-tags p {
   margin: 0 10px 0 0;
 }
+/*My changes*/
 a:link,
 a:visited{
     color:#e67e22;
