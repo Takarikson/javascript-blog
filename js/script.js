@@ -141,9 +141,9 @@ function generateTags() {
   for (let tag in allTags) {
     /* [NEW] genereate code of a link and add it to allTagsHTML */
     //allTagsHTML += tag + ' (' + allTags[tag] + ')';
-    // TAK BYŁO allTagsHTML += `<li><a href="#tag-${tag}">${tag} (${allTags[tag]})</a>, </li>`;
-    const tagLinkHTML = '<li>' + '<a href="#tag-" class="' + calculateTagClass(allTags[tag], tagsParams) + '"</a></li> ';
-    allTagsHTML += tagLinkHTML
+    //allTagsHTML += `<li><a href="#tag-${tag}">${tag} (${allTags[tag]})</a>, </li>`;
+    const tagLinkHTML = `<li>` + `<a href="#tag-${tag}" class="` + calculateTagClass(allTags[tag], tagsParams) + `> ${tag}(${allTags[tag]})</a ></li >,`;
+    allTagsHTML += tagLinkHTML;
     console.log('taglinkHTML:', tagLinkHTML);
     /* [NEW] END LOOP: for each tag in allTags */
   }
@@ -204,7 +204,7 @@ function generateAuthors() {
     /* get tags from data-author attribute*/
     const articleAuthor = article.getAttribute('data-author');
     /* insert HTML of all the links into the tags wrapper */
-    const linkHTML = `by <a href="author-${articleAuthor}">${articleAuthor}</a>`;
+    const linkHTML = `by < a href = "author-${articleAuthor}" > ${articleAuthor}</a > `;
     /* END LOOP: for every authors: */
     authorsWrapper.innerHTML = linkHTML;
   }
