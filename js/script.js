@@ -142,7 +142,7 @@ function generateTags() {
     /* [NEW] genereate code of a link and add it to allTagsHTML */
     //allTagsHTML += tag + ' (' + allTags[tag] + ')';
     //allTagsHTML += `<li><a href="#tag-${tag}">${tag} (${allTags[tag]})</a>, </li>`;
-    const tagLinkHTML = `<li>` + `<a href="#tag-${tag}" class="` + calculateTagClass(allTags[tag], tagsParams) + `> ${tag}(${allTags[tag]})</a ></li >,`;
+    const tagLinkHTML = `<li><a href=#tag-${tag} class=${calculateTagClass(allTags[tag], tagsParams)}>${tag}(${allTags[tag]})</a>,</li>`;
     allTagsHTML += tagLinkHTML;
     console.log('taglinkHTML:', tagLinkHTML);
     /* [NEW] END LOOP: for each tag in allTags */
@@ -204,7 +204,7 @@ function generateAuthors() {
     /* get tags from data-author attribute*/
     const articleAuthor = article.getAttribute('data-author');
     /* insert HTML of all the links into the tags wrapper */
-    const linkHTML = `by < a href = "author-${articleAuthor}" > ${articleAuthor}</a > `;
+    const linkHTML = `by <a href = "#author-${articleAuthor}" > ${articleAuthor}</a>`;
     /* END LOOP: for every authors: */
     authorsWrapper.innerHTML = linkHTML;
   }
@@ -213,7 +213,7 @@ generateAuthors();
 
 function addClickListenersToAuthors() {
   /* find all links to tags */
-  const links = document.querySelectorAll('a[href^="author-"]');
+  const links = document.querySelectorAll('a[href^="#author-"]');
   /* START LOOP: for each link */
   for (let link of links) {
     /* add tagClickHandler as event listener for that link */
@@ -231,7 +231,7 @@ function authorClickHandler(event) {
   /* [DONE] make a new constant "href" and read the attribute "href" of the clicked element */
   const href = clickedElement.getAttribute('href');
   /* [DONE] make a new constant "tag" and extract tag from the "href" constant */
-  const tagAuthor = href.replace('author-', '');
+  const tagAuthor = href.replace('#author-', '');
   /* execute function "generateTitleLinks" with article selector as argument */
   generateTitleLinks('[data-author="' + tagAuthor + '"]');
 }
