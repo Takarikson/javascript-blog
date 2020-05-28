@@ -91,8 +91,9 @@ function calculateTagClass(count, params) {
   const normalizedMax = params.max - params.min;
   const percentage = normalizedCount / normalizedMax;
   const classNumber = Math.floor(percentage * (optCloudClassCount - 1) + 1);
+  return optCloudClassPrefix + classNumber;
 }
-console.log(calculateTagClass(1, 5));
+console.log(calculateTagClass(2, 3));
 
 
 //GENERATE TAGS [DONE]
