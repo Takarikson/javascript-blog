@@ -141,7 +141,6 @@ function generateTags() {
   ---------------------------------*/
   /*znalezienie skrajnych liczb wystąpień*/
   const tagsParams = calculateTagsParams(allTags);
-  console.log('tagsParams:', tagsParams);
   /* [NEW] create variable for all links HTML code*/
   let allTagsHTML = '';
   /* [NEW] START LOOP: for each tag in allTags: */
@@ -217,6 +216,21 @@ function generateAuthors() {
   }
 }
 generateAuthors();
+function generateAuthorsInSidebar() {
+  const articles = document.querySelectorAll(optArticleSelector);
+  //const zamieniłem na let
+  let sidebarWrapper = document.querySelector('.list .authors');
+  let html = '';
+  let linkHTML = '';
+  for (let article of articles) {
+    const articleAuthor = article.getAttribute('data-author');
+    const linkHTML = `by <a href="author-${articleAuthor.toLowerCase()}">${articleAuthor}</a>`;
+  }
+  //właśnie tutaj
+  sidebarWrapper += linkHTML;
+}
+generateAuthorsInSidebar();
+
 
 function addClickListenersToAuthors() {
   /* find all links to tags */
