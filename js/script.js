@@ -205,7 +205,7 @@ function generateAuthors() {
   /* [DONE] find all authors */
   const articles = document.querySelectorAll(optArticleSelector);
   /*Szukanie z listy po prawej stronie (html)*/
-  const articleListWrapper = document.querySelectorAll('.list .authors');/*NA PĘTLE Z DOŁU */
+  const articleListWrapper = document.querySelector('.list.authors');/*NA PĘTLE Z DOŁU */
   /* START LOOP: for every authors: */
   for (let article of articles) {
     /* find author wrapper */
@@ -232,7 +232,7 @@ function generateAuthors() {
   /* [NEW] START LOOP: for each tag in allTags: */
   for (let author in allAuthors) {
     /* [NEW] genereate code of a link and add it to allTagsHTML */
-    const tagAuthorsHTML = `<li><a href="#author-${author}">${author}(${allAuthors[articleAuthor]})</a>,</li>`;
+    const tagAuthorsHTML = `<li><a href="#author-${author}">${author}(${allAuthors[author]})</a>,</li>`;
     allAuthorsHTML += tagAuthorsHTML;
     /* [NEW] END LOOP: for each tag in allTags */
   }
