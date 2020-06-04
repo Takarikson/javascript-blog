@@ -155,7 +155,6 @@ function generateTags() {
   }
   /* [NEW] add html from allTagsHTML to tagList */
   tagList.innerHTML = allTagsHTML;
-
 }
 generateTags();
 //AFTER CLICK
@@ -206,7 +205,7 @@ function generateAuthors() {
   /* [DONE] find all authors */
   const articles = document.querySelectorAll(optArticleSelector);
   /*Szukanie z listy po prawej stronie (html)*/
-  const articleListWrapper = document.querySelectorAll('.list.authors');
+  const articleListWrapper = document.querySelectorAll('.list .authors');/*NA PĘTLE Z DOŁU */
   /* START LOOP: for every authors: */
   for (let article of articles) {
     /* find author wrapper */
@@ -216,16 +215,29 @@ function generateAuthors() {
     /* get tags from data-author attribute*/
     const articleAuthor = article.getAttribute('data-author');
     /* insert HTML of all the links into the tags wrapper */
-    const linkHTML = `<a href = "#author-${articleAuthor}"> ${articleAuthor}</a>`;
+    const linkHTML = `<a href="#author-${articleAuthor}">${articleAuthor}</a>`;
     if (!allAuthors[articleAuthor]) {
       /*[NEW] add generated code to allTags array */
       allAuthors[articleAuthor] = 1;
     } else {
       allAuthors[articleAuthor]++;
     }
+    html += linkHTML;
     /* END LOOP: for every authors: */
+
     authorsWrapper.innerHTML = linkHTML;
   }
+  /*tworzenie pustego stinga html*/
+  let allAuthorsHTML = '';
+  /* [NEW] START LOOP: for each tag in allTags: */
+  for (let author in allAuthors) {
+    /* [NEW] genereate code of a link and add it to allTagsHTML */
+    const tagAuthorsHTML = `<li><a href="#author-${author}">${author}(${allAuthors[articleAuthor]})</a>,</li>`;
+    allAuthorsHTML += tagAuthorsHTML;
+    /* [NEW] END LOOP: for each tag in allTags */
+  }
+  articleListWrapper.innerHTML = allAuthorsHTML;
+
 }
 generateAuthors();
 
