@@ -201,36 +201,33 @@ addClickListenersToTags();
 
 /*[DONE]*/
 function generateAuthors() {
+  /* [NEW] create a new variable allAuthors with an empty OBJECT */
+  const allAuthors = {};
   /* [DONE] find all authors */
   const articles = document.querySelectorAll(optArticleSelector);
+  /*Szukanie z listy po prawej stronie (html)*/
+  const articleListWrapper = document.querySelectorAll('.list.authors');
   /* START LOOP: for every authors: */
   for (let article of articles) {
     /* find author wrapper */
     const authorsWrapper = article.querySelector(optAuthorSelector);
+    /* [DONE] make html variable with empty string */
+    let html = '';
     /* get tags from data-author attribute*/
     const articleAuthor = article.getAttribute('data-author');
     /* insert HTML of all the links into the tags wrapper */
-    const linkHTML = `by <a href = "#author-${articleAuthor}" > ${articleAuthor}</a>`;
+    const linkHTML = `<a href = "#author-${articleAuthor}"> ${articleAuthor}</a>`;
+    if (!allAuthors[articleAuthor]) {
+      /*[NEW] add generated code to allTags array */
+      allAuthors[articleAuthor] = 1;
+    } else {
+      allAuthors[articleAuthor]++;
+    }
     /* END LOOP: for every authors: */
     authorsWrapper.innerHTML = linkHTML;
   }
 }
 generateAuthors();
-function generateAuthorsInSidebar() {
-  const articles = document.querySelectorAll(optArticleSelector);
-  //const zamieniłem na let
-  let sidebarWrapper = document.querySelector('.list .authors');
-  let html = '';
-  let linkHTML = '';
-  for (let article of articles) {
-    const articleAuthor = article.getAttribute('data-author');
-    const linkHTML = `by <a href="author-${articleAuthor.toLowerCase()}">${articleAuthor}</a>`;
-  }
-  //właśnie tutaj
-  sidebarWrapper += linkHTML;
-}
-generateAuthorsInSidebar();
-
 
 function addClickListenersToAuthors() {
   /* find all links to tags */
