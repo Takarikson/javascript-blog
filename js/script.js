@@ -13,14 +13,15 @@ Jeśli przed pętlą nie można dobrać się do zmiennej to prawdopodobnie trzeb
 *. elem - elements
 */
 
-const optArticleSelector = '.post',
-  optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list',
-  optAuthorSelector = '.post-author',
-  optCloudClassCount = 5,
-  optCloudClassPrefix = 'tag-size-';
-
+const opt = {
+  articleSelector: '.post',
+  titleSelector: '.post-title',
+  titleListSelector: '.titles',
+  articleTagsSelector: '.post-tags .list',
+  authorSelector: '.post-author',
+  cloudClassCount: 5,
+  cloudClassPrefix: 'tag-size-',
+};
 
 function titleClickHandler(event) {
   event.preventDefault();
@@ -47,16 +48,16 @@ function titleClickHandler(event) {
 //doczytac nt customSelector
 function generateTitleLinks(customSelector = '') {
   /* [DONE] remove contents of titleList */
-  const titleList = document.querySelector(optTitleListSelector);
+  const titleList = document.querySelector(opt.titleListSelector);
   /* [DONE] for each article */
-  const articles = document.querySelectorAll(optArticleSelector + customSelector);
+  const articles = document.querySelectorAll(opt.articleSelector + customSelector);
   /*[DONE Loop]*/
   let html = '';
   for (let article of articles) {
     /*[DONE] get the article id */
     const articleId = article.getAttribute('id');
     /*[DONE] find the title element - .innerHTML wytwarza błąd. poprawny .textContent*/
-    const articleTitle = article.querySelector(optTitleSelector).textContent;
+    const articleTitle = article.querySelector(opt.titleSelector).textContent;
     /* create HTML of the link */
     const linkHTML = `<li><a href="#${articleId}"><span>${articleTitle}</span></a></li>`;
     /* insert link into titleList */
@@ -85,13 +86,13 @@ function calculateTagsParams(tags) {
 }
 
 function calculateTagClass(count, params) {
-  //const classNumber = Math.floor(((count - params.min) / (params.max - params.min)) * optCloudClassCount + 1);
+  //const classNumber = Math.floor(((count - params.min) / (params.max - params.min)) * opt.CloudClassCount + 1);
 
   const normalizedCount = count - params.min;
   const normalizedMax = params.max - params.min;
   const percentage = normalizedCount / normalizedMax;
-  const classNumber = Math.floor(percentage * (optCloudClassCount - 1) + 1);
-  return optCloudClassPrefix + classNumber;
+  const classNumber = Math.floor(percentage * (opt.CloudClassCount - 1) + 1);
+  return opt.CloudClassPrefix + classNumber;
 }
 
 
@@ -100,11 +101,11 @@ function generateTags() {
   /* [NEW] create a new variable allTags with an empty OBJECT */
   let allTags = {};
   /* [DONE] find all articles */
-  const articles = document.querySelectorAll(optArticleSelector);
+  const articles = document.querySelectorAll(opt.articleSelector);
   /* START LOOP: for every article: */
   for (let article of articles) {
     /* [DONE] find tags wrapper */
-    const tagsWrapper = article.querySelector(optArticleTagsSelector);
+    const tagsWrapper = article.querySelector(opt.ArticleTagsSelector);
     /* [DONE] make html variable with empty string */
     let html = '';
     /* 1. Dla każdego artykułu znajdujemy jego tagi - [DONE] get tags from data-tags attribute */
@@ -203,13 +204,13 @@ function generateAuthors() {
   /* [NEW] create a new variable allAuthors with an empty OBJECT */
   const allAuthors = {};
   /* [DONE] find all authors */
-  const articles = document.querySelectorAll(optArticleSelector);
+  const articles = document.querySelectorAll(opt.articleSelector);
   /*Szukanie z listy po prawej stronie (html)*/
   const articleListWrapper = document.querySelector('.list.authors');/*NA PĘTLE Z DOŁU */
   /* START LOOP: for every authors: */
   for (let article of articles) {
     /* find author wrapper */
-    const authorsWrapper = article.querySelector(optAuthorSelector);
+    const authorsWrapper = article.querySelector(opt.AuthorSelector);
     /* [DONE] make html variable with empty string */
     let html = '';
     /* get tags from data-author attribute*/
