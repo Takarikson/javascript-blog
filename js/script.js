@@ -23,6 +23,7 @@ const opt = {
   cloudClassPrefix: 'tag-size-',
 };
 
+
 function titleClickHandler(event) {
   event.preventDefault();
   const clickedElement = this;
@@ -105,7 +106,7 @@ function generateTags() {
   /* START LOOP: for every article: */
   for (let article of articles) {
     /* [DONE] find tags wrapper */
-    const tagsWrapper = article.querySelector(opt.ArticleTagsSelector);
+    const tagsWrapper = article.querySelector(opt.articleTagsSelector);
     /* [DONE] make html variable with empty string */
     let html = '';
     /* 1. Dla każdego artykułu znajdujemy jego tagi - [DONE] get tags from data-tags attribute */
@@ -210,7 +211,7 @@ function generateAuthors() {
   /* START LOOP: for every authors: */
   for (let article of articles) {
     /* find author wrapper */
-    const authorsWrapper = article.querySelector(opt.AuthorSelector);
+    const authorsWrapper = article.querySelector(opt.authorSelector);
     /* [DONE] make html variable with empty string */
     let html = '';
     /* get tags from data-author attribute*/
