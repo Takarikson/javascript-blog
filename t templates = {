@@ -1,0 +1,54 @@
+* [33m931ebca[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;33mtag: v.1.0[m[33m, [m[1;31morigin/master[m[33m)[m create object for optSelectors
+* [33m7b7c2f9[m create object for optSelectors
+* [33m24c3a56[m fix function generateAuthorrs
+* [33mab56bea[m testing  tagAuthorsHTML
+* [33mc082a6d[m create if else in function generateAuthors
+* [33m56b25b1[m testing function generate authors in sidebar
+* [33maf91fb9[m fix style.scss
+* [33m1059b9f[m testing function calculateTagClass 2
+* [33mf7ab080[m testing function calculateTagClass 1.
+* [33m0363cf4[m fix links, data-authors, add style
+* [33m8b782c9[m (to) fix const tagLinkHTML
+* [33mecdacbb[m create function calculateTagClass
+* [33me744985[m some changes in css
+* [33m93f43de[m fix html, const tagsHTML
+* [33mffaa9e7[m add function calculateTagsParams
+* [33me0741ab[m add links to generating Tags(121line)
+* [33mac5c6e8[m[33m ([m[1;33mtag: v.0.2[m[33m)[m change styles, delete tags list in html, generate tags in js(function generateTags)
+* [33m501b3b0[m fix functions3
+* [33m8c74cdc[m fix functions, delete generateAuthorsInSideBar
+* [33m5e00070[m to fix functions
+* [33m3ad182c[m fix generateAuthors, add addClickListenersToAuthors
+* [33m0ddb1fd[m delete authors in index.html, fix functions, add function generateAuthors
+* [33m358ed1b[m accetable function generateTags, tagClickHandler
+* [33mc758fc8[m add function addClickListenersToTags
+* [33me280b1d[m add loop for each found tag link
+* [33m5a81f8f[m fix const linkHTML
+* [33mea06435[m create loop for each active tag link
+* [33m9f58c7d[m fix loop generateTags, add function tagClickHandler
+* [33m845a233[m fix loop
+* [33m1b36308[m fix scss, create loop for tags
+* [33mc599e29[m[33m ([m[1;33mtag: v.0.1[m[33m)[m create loop for (tag for articleTagsArray)
+* [33m59a0129[m testing function generateTags
+* [33mf715084[m create function generateTags
+* [33m66ca37f[m Fix js, scss, html
+* [33mf7e4162[m delete tags, create function generateTags
+* [33m7da8c9e[m add tags to html
+* [33m819be23[m Init StyleLint
+* [33m96795c1[m Init EditorConfig
+* [33m0bf6099[m Init ESLint
+* [33mfcdfa53[m fixed links, move loop for links
+* [33ma58d29b[m fix the loop (must add title from the title element v2)
+* [33mb74773c[m fix the loop (must add title from the title element)
+* [33m3cfef74[m to fix function generateTitleLinks(loop, for-of, etc)
+* [33md562bc7[m add loop for each articles
+* [33m855c0d0[m add function generateTitleLinks
+* [33m6fa227e[m fixed targetArticle
+* [33m596fa10[m add value attribute to href add class active to correct article
+* [33m4dca6af[m add href attribute from the clicked link
+* [33m887a0ba[m add class active to clickedElement
+* [33md6ebc04[m remove class 'active' from all articles
+* [33m8bc59f9[m add meta-tags; event in js
+* [33m37cb15c[m add js to browser-sync
+* [33m4c99d93[m add html, styles
+* [33maf7d7a3[m init project

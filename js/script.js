@@ -12,6 +12,10 @@ Jeśli przed pętlą nie można dobrać się do zmiennej to prawdopodobnie trzeb
 *. opts - optiions
 *. elem - elements
 */
+const templates = {
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+  tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML)
+};
 
 const opt = {
   articleSelector: '.post',
@@ -60,7 +64,9 @@ function generateTitleLinks(customSelector = '') {
     /*[DONE] find the title element - .innerHTML wytwarza błąd. poprawny .textContent*/
     const articleTitle = article.querySelector(opt.titleSelector).textContent;
     /* create HTML of the link */
-    const linkHTML = `<li><a href="#${articleId}"><span>${articleTitle}</span></a></li>`;
+    //const linkHTML = `<li><a href="#${articleId}"><span>${articleTitle}</span></a></li>`;
+    const linkHTMLData = { id: articleId, title: articleTitle };
+    const linkHTML = templates.articleLink(linkHTMLData);
     /* insert link into titleList */
     html = html + linkHTML;
   }
@@ -117,7 +123,9 @@ function generateTags() {
     for (let tag of articleTagsArray) {
       /* 2. Dla każdego z tych tagów jest generowany kod HTML linka -
       [DONE] generate HTML of the link */
-      const linkHTML = `<li><a href="#tag-${tag}">${tag}</a>, </li>`;
+      //const linkHTML = `<li><a href="#tag-${tag}">${tag}</a>, </li>`;
+      const linkHTMLData = { id: articleTags, title: tag };
+      const linkHTML = templates.tagLink(linkHTMLData);
       /* add generated code to html variable */
       html = html + linkHTML;
       /* 3. Sprawdzamy, czy dokładnie taki link mamy już w tablicy allTags"jeśli allTags NIE MA klucza tag" -
