@@ -15,7 +15,7 @@ Jeśli przed pętlą nie można dobrać się do zmiennej to prawdopodobnie trzeb
 const templates = {
   articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
   tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
-  authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML)
+  authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
 };
 
 const opt = {
@@ -227,7 +227,7 @@ function generateAuthors() {
     const articleAuthor = article.getAttribute('data-author');
     /* insert HTML of all the links into the tags wrapper */
     //const linkHTML = `<a href="#author-${articleAuthor}">${articleAuthor}</a>`;
-    const linkHTMLData = { id: authorsWrapper, title: articleAuthor };
+    const linkHTMLData = { author: articleAuthor };
     const linkHTML = templates.authorLink(linkHTMLData);
     if (!allAuthors[articleAuthor]) {
       /*[NEW] add generated code to allTags array */
