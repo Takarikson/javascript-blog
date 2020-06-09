@@ -17,6 +17,7 @@ const templates = {
   tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
   authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
   tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML),
+  authorListLink: Handlebars.compile(document.querySelector('#template-author-list-link').innerHTML),
 };
 
 const opt = {
@@ -161,7 +162,7 @@ function generateTags() {
     /* [NEW] genereate code of a link and add it to allTagsHTML */
     //allTagsHTML += tag + ' (' + allTags[tag] + ')';
     //allTagsHTML += `<li><a href="#tag-${tag}">${tag} (${allTags[tag]})</a>, </li>`;
-    const tagLinkHTML = `<li><a href="#tag-${tag}" class="${calculateTagClass(allTags[tag], tagsParams)}">${tag}(${allTags[tag]})</a>,</li>`;
+    // const tagLinkHTML = `<li><a href="#tag-${tag}" class="${calculateTagClass(allTags[tag], tagsParams)}">${tag}(${allTags[tag]})</a>,</li>`;
     //const tagLinkHTML = `<li><a href="#tag-${tag}" class="${calculateTagClass(allTags[tag], tagsParams)}">${tag}</a>,</li>`;
     // allTagsHTML += tagLinkHTML;
     allTagsData.tags.push({
@@ -249,16 +250,21 @@ function generateAuthors() {
     authorsWrapper.innerHTML = linkHTML;
   }
   /*tworzenie pustego stinga html*/
-  let allAuthorsHTML = '';
+  // let allAuthorsHTML = '';
+  const allAuthorsData = { authors: [] };
   /* [NEW] START LOOP: for each tag in allTags: */
   for (let author in allAuthors) {
     /* [NEW] genereate code of a link and add it to allTagsHTML */
-    const tagAuthorsHTML = `<li><a href="#author-${author}">${author}(${allAuthors[author]})</a>,</li>`;
-    allAuthorsHTML += tagAuthorsHTML;
+    // const tagAuthorsHTML = `<li><a href="#author-${author}">${author}(${allAuthors[author]})</a>,</li>`;
+    // allAuthorsHTML += tagAuthorsHTML;
+    allAuthorsData.authors.push({
+      author: author,
+      count: allAuthors[author],
+    });
     /* [NEW] END LOOP: for each tag in allTags */
   }
-  articleListWrapper.innerHTML = allAuthorsHTML;
-
+  // articleListWrapper.innerHTML = allAuthorsHTML;
+  articleListWrapper.innerHTML = templates.authorListLink(allAuthorsData);
 }
 generateAuthors();
 
