@@ -14,7 +14,8 @@ Jeśli przed pętlą nie można dobrać się do zmiennej to prawdopodobnie trzeb
 */
 const templates = {
   articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
-  tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML)
+  tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+  authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML)
 };
 
 const opt = {
@@ -124,7 +125,7 @@ function generateTags() {
       /* 2. Dla każdego z tych tagów jest generowany kod HTML linka -
       [DONE] generate HTML of the link */
       //const linkHTML = `<li><a href="#tag-${tag}">${tag}</a>, </li>`;
-      const linkHTMLData = { id: tagsWrapper, title: articleTagsArray };
+      const linkHTMLData = { id: tagsWrapper, title: tag };
       const linkHTML = templates.tagLink(linkHTMLData);
       /* add generated code to html variable */
       html = html + linkHTML;
@@ -225,7 +226,9 @@ function generateAuthors() {
     /* get tags from data-author attribute*/
     const articleAuthor = article.getAttribute('data-author');
     /* insert HTML of all the links into the tags wrapper */
-    const linkHTML = `<a href="#author-${articleAuthor}">${articleAuthor}</a>`;
+    //const linkHTML = `<a href="#author-${articleAuthor}">${articleAuthor}</a>`;
+    const linkHTMLData = { id: authorsWrapper, title: articleAuthor };
+    const linkHTML = templates.authorLink(linkHTMLData);
     if (!allAuthors[articleAuthor]) {
       /*[NEW] add generated code to allTags array */
       allAuthors[articleAuthor] = 1;
